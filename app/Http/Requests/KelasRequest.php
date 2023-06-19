@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class KelasRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'nama_kelas' => 'required||string',
+            'kode_kelas' => 'required||string||unique:kelas,kode_kelas',
+            'tahun_ajaran_id' => 'required',
+            'tingkat_id' => 'required',
+        ];
+    }
+}
