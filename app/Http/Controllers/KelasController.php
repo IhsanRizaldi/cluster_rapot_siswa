@@ -6,6 +6,7 @@ use App\Http\Requests\KelasRequest;
 use App\Models\Kelas;
 use App\Models\TahunAjaran;
 use App\Models\Tingkat;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -13,10 +14,20 @@ class KelasController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kelas = Kelas::all();
-        return view('kelas.index',compact('kelas'));
+        $cari = $request->cari;
+        if(isset($cari)){
+            $kelas = Kelas::where('nama_kelas','like','%'.$cari.'%')
+            ->orWhere('kode_kelas','like','%'.$cari.'%')
+            ->latest()->paginate(5);
+            $user = User::get();
+            return view('kelas.index',compact('kelas','user'));
+        }
+
+        $kelas = Kelas::latest()->paginate(5);
+        $user = User::get();
+        return view('kelas.index',compact('kelas','user'));
     }
 
     /**
@@ -26,7 +37,8 @@ class KelasController extends Controller
     {
         $tahun = TahunAjaran::all();
         $tingkat = Tingkat::all();
-        return view('kelas.create',compact('tahun','tingkat'));
+        $user = User::get();
+        return view('kelas.create',compact('tahun','tingkat','user'));
     }
 
     /**
@@ -55,9 +67,10 @@ class KelasController extends Controller
     public function edit(string $id)
     {
         $tahun = TahunAjaran::all();
+        $user = User::get();
         $tingkat = Tingkat::all();
         $kelas = Kelas::find($id);
-        return view('kelas.edit',compact('kelas','tingkat','tahun'));
+        return view('kelas.edit',compact('kelas','tingkat','tahun','user'));
     }
 
     /**

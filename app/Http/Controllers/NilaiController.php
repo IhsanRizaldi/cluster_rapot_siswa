@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\Nilai;
 use App\Models\SetKelas;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class NilaiController extends Controller
@@ -14,8 +15,9 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        $kelas = Kelas::all();
-        return view('setnilai.index',compact('kelas'));
+        $kelas = Kelas::latest()->paginate(5);
+        $user = User::get();
+        return view('setnilai.index',compact('kelas','user'));
     }
 
     /**
@@ -55,10 +57,11 @@ class NilaiController extends Controller
      */
     public function show(string $id)
     {
+        $user = User::get();
         $nilai = Nilai::with('setkelas')->whereHas('setkelas', function($query) use (&$id){
             $query->where('kelas_id',$id);
         })->get();
-        return view('setnilai.show',compact('nilai'));
+        return view('setnilai.show',compact('nilai','user'));
     }
 
     /**
@@ -69,7 +72,8 @@ class NilaiController extends Controller
         $nilai = Nilai::with('setkelas')->whereHas('setkelas', function($query) use (&$id){
             $query->where('kelas_id',$id);
         })->get();
-        return view('setnilai.edit',compact('nilai'));
+        $user = User::get();
+        return view('setnilai.edit',compact('nilai','user'));
     }
 
     /**
@@ -77,26 +81,10 @@ class NilaiController extends Controller
      */
     public function update(Request $request)
     {
-        $id = $request->input('setkelas_id');
-        $nilai = Nilai::where('setkelas_id',$id);
-        dd($nilai);
-        foreach ($nilai as $nilai) {
-            $nilai->setkelas_id = $request->setkelas_id;
-            $nilai->bahasa_indonesia = $request->bahasa_indonesia;
-            $nilai->bahasa_inggris = $request->bahasa_inggris;
-            $nilai->bahasa_jepang = $request->bahasa_jepang;
-            $nilai->ilmu_pengetahuan_alam = $request->ilmu_pengetahuan_alam;
-            $nilai->ilmu_pengetahuan_sosial = $request->ilmu_pengetahuan_sosial;
-            $nilai->matematika = $request->matematika;
-            $nilai->seni_budaya = $request->seni_budaya;
-            $nilai->pendidikan_jasmani_dan_rohani = $request->pendidikan_jasmani_dan_rohani;
-            $nilai->pendidikan_agama_dan_budi_pekerti = $request->pendidikan_agama_dan_budi_pekerti;
-            $nilai->pendidikan_kewarganegaraan = $request->pendidikan_kewarganegaraan;
-            dd($nilai);
-            $nilai->save();
+        foreach ($request->nilai as $key => $value) {
+            Nilai::where('setkelas_id',$key)->update($value);
         }
-        return redirect()->route('setnilai.index')->with('success', 'Set Nilai berhasil ditambahkan!');
-
+        return redirect()->back();
     }
 
     /**

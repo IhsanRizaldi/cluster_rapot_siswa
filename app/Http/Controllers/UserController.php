@@ -13,9 +13,18 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::all();
+        $cari = $request->cari;
+        if (isset($cari)) {
+            $user = User::where('name','like','%'.$cari.'%')
+            ->orWhere('email','like','%'.$cari.'%')
+            ->orWhere('role','like','%'.$cari.'%')
+            ->latest()
+            ->paginate(5);
+            return view('users.index',compact('user'));
+        }
+        $user = User::latest()->paginate(5);
         return view('users.index',compact('user'));
     }
 
@@ -24,7 +33,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $user = User::get();
+        return view('users.create',compact('user'));
     }
 
     /**

@@ -40,26 +40,26 @@
                         <tr>
                             @foreach ($nilai as $data)
                             <td>{{ $data->setkelas->siswa->nama_lengkap }}</td>
-                            <input type="hidden" name="setkelas_id[]" value="{{ $data->setkelas->id }}">
-                            <td><input type="number" name="bahasa_indonesia[]" value="{{ $data->bahasa_indonesia }}" class="form-control"></td>
+                            <input type="hidden" name="nilai[{{ $data->setkelas_id }}]" value="{{ $data->setkelas->id }}">
+                            <td><input type="number" name="nilai[{{ $data->setkelas_id }}][bahasa_indonesia]" value="{{ $data->bahasa_indonesia }}" class="form-control"></td>
 
-                            <td><input type="number" name="bahasa_inggris[]" value="{{ $data->bahasa_inggris }}" class="form-control"></td>
+                            <td><input type="number" name="nilai[{{ $data->setkelas_id }}][bahasa_inggris]" value="{{ $data->bahasa_inggris }}" class="form-control"></td>
 
-                            <td><input type="number" name="bahasa_jepang[]" value="{{ $data->bahasa_jepang }}" class="form-control"></td>
+                            <td><input type="number" name="nilai[{{ $data->setkelas_id }}][bahasa_jepang]" value="{{ $data->bahasa_jepang }}" class="form-control"></td>
 
-                            <td><input type="number" name="ilmu_pengetahuan_alam[]" value="{{ $data->ilmu_pengetahuan_alam }}" class="form-control"></td>
+                            <td><input type="number" name="nilai[{{ $data->setkelas_id }}][ilmu_pengetahuan_alam]" value="{{ $data->ilmu_pengetahuan_alam }}" class="form-control"></td>
 
-                            <td><input type="number" name="ilmu_pengetahuan_sosial[]" value="{{ $data->ilmu_pengetahuan_sosial }}" class="form-control"></td>
+                            <td><input type="number" name="nilai[{{ $data->setkelas_id }}][ilmu_pengetahuan_sosial]" value="{{ $data->ilmu_pengetahuan_sosial }}" class="form-control"></td>
 
-                            <td><input type="number" name="matematika[]" value="{{ $data->matematika }}" class="form-control"></td>
+                            <td><input type="number" name="nilai[{{ $data->setkelas_id }}][matematika]" value="{{ $data->matematika }}" class="form-control"></td>
 
-                            <td><input type="number" name="seni_budaya[]" value="{{ $data->seni_budaya }}" class="form-control"></td>
+                            <td><input type="number" name="nilai[{{ $data->setkelas_id }}][seni_budaya]" value="{{ $data->seni_budaya }}" class="form-control"></td>
 
-                            <td><input type="number" name="pendidikan_jasmani_dan_rohani[]" value="{{ $data->pendidikan_jasmani_dan_rohani }}" class="form-control"></td>
+                            <td><input type="number" name="nilai[{{ $data->setkelas_id }}][pendidikan_jasmani_dan_rohani]" value="{{ $data->pendidikan_jasmani_dan_rohani }}" class="form-control"></td>
 
-                            <td><input type="number" name="pendidikan_agama_dan_budi_pekerti[]" value="{{ $data->pendidikan_agama_dan_budi_pekerti }}" class="form-control"></td>
+                            <td><input type="number" name="nilai[{{ $data->setkelas_id }}][pendidikan_agama_dan_budi_pekerti]" value="{{ $data->pendidikan_agama_dan_budi_pekerti }}" class="form-control"></td>
 
-                            <td><input type="number" name="pendidikan_kewarganegaraan[]" value="{{ $data->pendidikan_kewarganegaraan }}" class="form-control"></td>
+                            <td><input type="number" name="nilai[{{ $data->setkelas_id }}][pendidikan_kewarganegaraan]" value="{{ $data->pendidikan_kewarganegaraan }}" class="form-control"></td>
                         </tr>
                     @endforeach
 

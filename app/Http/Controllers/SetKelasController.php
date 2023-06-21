@@ -19,8 +19,9 @@ class SetKelasController extends Controller
     public function index()
     {
         $kelas = Kelas::get();
-        $setkelas = SetKelas::get();
-        return view('setkelas.index',compact('kelas','setkelas'));
+        $setkelas = SetKelas::latest()->paginate(5);
+        $user = User::get();
+        return view('setkelas.index',compact('kelas','setkelas','user'));
     }
 
     /**

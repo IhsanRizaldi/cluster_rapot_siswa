@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -12,7 +13,8 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('master.index');
+        $user = User::get();
+        return view('master.index',compact('user'));
     }
 
     /**

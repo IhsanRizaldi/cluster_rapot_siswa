@@ -1,8 +1,7 @@
 @extends('master.index')
 @section('main')
-    <h2 class="text-center">Tambah Tingkat</h2>
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col">
             <div class="card">
                 <div class="card-header">
                     <h6 class="card-title text-primary">Tambah Tingkat</h6>

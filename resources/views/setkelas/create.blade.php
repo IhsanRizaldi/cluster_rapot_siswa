@@ -1,8 +1,7 @@
 @extends('master.index')
 @section('main')
-    <h2 class="text-center">Tambah Set Kelas</h2>
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col">
             <div class="card">
                 <div class="card-header">
                     <h6 class="card-title text-primary">Tambah Set Kelas</h6>
@@ -13,7 +12,7 @@
                         <div class="row">
                                 <div class="mb-3">
                                     <label class="form-label">Kelas</label>
-                                    <select name="kelas_id" id="" class="form-control text-center">
+                                    <select name="kelas_id" id="" class="form-control">
                                         @foreach ($kelas as $data)
                                             <option value="{{ $data->id }}">{{ $data->kode_kelas }}</option>
                                         @endforeach
@@ -23,7 +22,7 @@
                         <div class="row">
                             <div class="mb-3">
                                 <label class="form-label">Wali Kelas</label>
-                                <select name="walikelas_id" id="" class="form-control text-center">
+                                <select name="walikelas_id" id="" class="form-control">
                                     @foreach ($user as $data)
                                         <option value="{{ $data->id }}">{{ $data->name }}</option>
                                     @endforeach
@@ -63,10 +62,12 @@
         </div>
     </div>
 @endsection
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script src="{{ URL::asset('/js/pair-select.js') }}"></script>
+<script src="{{ URL::asset('js/pair-select.js') }}"></script>
     <script>
-        $(document).ready(function(){
+        jQuery(function ($) {
+            $(document).ready(function(){
             $('#siswa_semua').pairMaster();
 
             $('#tambah').click(function(){
@@ -77,5 +78,7 @@
                 $('#siswa_id').removeSelected('#siswa_semua');
             })
         })
+        });
+
 
     </script>

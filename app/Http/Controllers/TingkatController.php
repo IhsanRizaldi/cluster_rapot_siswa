@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TingkatRequest;
 use App\Models\Tingkat;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TingkatController extends Controller
@@ -11,10 +12,19 @@ class TingkatController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tingkat = Tingkat::all();
-        return view('tingkat.index',compact('tingkat'));
+        $cari = $request->cari;
+        if(isset($cari)){
+            $tingkat = Tingkat::where('nama_tingkat','like','%'.$cari.'%')
+            ->orWhere('kode_tingkat','like','%'.$cari.'%')
+            ->latest()->paginate(5);
+            $user = User::get();
+            return view('tingkat.index',compact('tingkat','user'));
+        }
+        $tingkat = Tingkat::latest()->paginate(5);
+        $user = User::get();
+        return view('tingkat.index',compact('tingkat','user'));
     }
 
     /**
@@ -22,7 +32,8 @@ class TingkatController extends Controller
      */
     public function create()
     {
-        return view('tingkat.create');
+        $user = User::get();
+        return view('tingkat.create',compact('user'));
     }
 
     /**
@@ -50,8 +61,9 @@ class TingkatController extends Controller
      */
     public function edit(string $id)
     {
+        $user = User::get();
         $tingkat = Tingkat::find($id);
-        return view('tingkat.edit',compact('tingkat'));
+        return view('tingkat.edit',compact('tingkat','user'));
     }
 
     /**

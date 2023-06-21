@@ -12,13 +12,20 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endif
-    <h2 class="text-center">Tahun Ajaran</h2>
+    <div class="row">
+        <div class="col-md-6 mb-3 mt-3">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="cari">
+                <button class="btn btn-outline-primary" type="submit"><i class="fas fa-magnifying-glass">Search</i></button>
+            </form>
+        </div>
+    </div>
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-header d-flex">
                     <h6 class="card-title text-primary">Tahun Ajaran</h6>
-                    <a href="{{ route('tahun_ajaran.create') }}" class="btn btn-primary ms-auto">
+                    <a href="{{ route('tahun_ajaran.create') }}" class="btn btn-primary ml-auto">
                         <i class="fas fa-plus-large">+</i>
                       </a>
                 </div>
@@ -47,6 +54,9 @@
                             </tr>
                         @endforeach
                     </table>
+                    <div class="d-flex">
+                        {!! $tahun_ajaran->links() !!}
+                    </div>
                 </div>
             </div>
         </div>

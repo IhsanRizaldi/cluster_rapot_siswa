@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TahunAjaranRequest;
 use App\Models\TahunAjaran;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TahunAjaranController extends Controller
@@ -11,10 +12,21 @@ class TahunAjaranController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tahun_ajaran = TahunAjaran::all();
-        return view('tahun_ajaran.index',compact('tahun_ajaran'));
+        $cari = $request->cari;
+        if(isset($cari)){
+            $tahun_ajaran = TahunAjaran::where('nama_tahun_ajaran','like','%'.$cari.'%')
+            ->orWhere('kode_tahun_ajaran','like','%'.$cari.'%')
+            ->orWhere('is_active','like','%'.$cari.'%')
+            ->latest()->paginate(5);
+            $user = User::get();
+            return view('tahun_ajaran.index',compact('tahun_ajaran','user'));
+        }
+            $tahun_ajaran = TahunAjaran::latest()->paginate(5);
+            $user = User::get();
+            return view('tahun_ajaran.index',compact('tahun_ajaran','user'));
+
     }
 
     /**
@@ -22,7 +34,8 @@ class TahunAjaranController extends Controller
      */
     public function create()
     {
-        return view('tahun_ajaran.create');
+        $user = User::get();
+        return view('tahun_ajaran.create',compact('user'));
     }
 
     /**
@@ -50,8 +63,9 @@ class TahunAjaranController extends Controller
      */
     public function edit(string $id)
     {
+        $user = User::get();
         $tahun_ajaran = TahunAjaran::find($id);
-        return view('tahun_ajaran.edit',compact('tahun_ajaran'));
+        return view('tahun_ajaran.edit',compact('tahun_ajaran','user'));
     }
 
     /**

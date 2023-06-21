@@ -22,13 +22,17 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endif
-    <h2 class="text-center">Set Nilai</h2>
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col">
             <div class="card">
-                <div class="card-header d-flex">
+                <div class="card-header">
                     <h6 class="card-title text-primary">Set Nilai</h6>
-                    <a href="{{ route('setnilai.edit',$nilai[0]->setkelas->kelas->id) }}" class="btn btn-success ms-auto"><i class="fas fa-pen"></i></a>
+                    <div class="row ">
+                        <div class="col d-flex ml-auto">
+                            <a href="{{ route('setnilai.edit',$nilai[0]->setkelas->kelas->id) }}" class="btn btn-success"><i class="fas fa-pen"></i></a>
+                            <a href="{{ route('setnilai.edit',$nilai[0]->setkelas->kelas->id) }}" class="btn btn-secondary"><i class="fas fa-pen"></i></a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -47,6 +51,7 @@
                             <th>PJOK</th>
                             <th>PABP</th>
                             <th>PKN</th>
+                            <th>Cluster</th>
                         </tr>
                         <tr>
                             @foreach ($nilai as $data)

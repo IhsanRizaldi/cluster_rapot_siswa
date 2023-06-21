@@ -15,16 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('setkelas_id');
             $table->foreign('setkelas_id')->references('id')->on('set_kelas')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->float('bahasa_indonesia');
-            $table->float('bahasa_inggris');
-            $table->float('bahasa_jepang');
-            $table->float('ilmu_pengetahuan_alam');
-            $table->float('ilmu_pengetahuan_sosial');
-            $table->float('matematika');
-            $table->float('seni_budaya');
-            $table->float('pendidikan_jasmani_dan_rohani');
-            $table->float('pendidikan_agama_dan_budi_pekerti');
-            $table->float('pendidikan_kewarganegaraan');
+            $table->integer('bahasa_indonesia');
+            $table->integer('bahasa_inggris');
+            $table->integer('bahasa_jepang');
+            $table->integer('ilmu_pengetahuan_alam');
+            $table->integer('ilmu_pengetahuan_sosial');
+            $table->integer('matematika');
+            $table->integer('seni_budaya');
+            $table->integer('pendidikan_jasmani_dan_rohani');
+            $table->integer('pendidikan_agama_dan_budi_pekerti');
+            $table->integer('pendidikan_kewarganegaraan');
             $table->timestamps();
         });
     }
