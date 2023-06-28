@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClusterController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
@@ -31,6 +32,9 @@ Route::prefix('login')->group(function () {
 Route::middleware(['auth'])->group(function (){
 
     Route::get('/', [IndexController::class,'index'])->name('home.index');
+
+    Route::get('/cluster/{id}', [ClusterController::class, 'index'])->name('cluster.index');
+
 
     //Tahun Ajaran
     Route::prefix('tahun_ajaran')->group(function () {

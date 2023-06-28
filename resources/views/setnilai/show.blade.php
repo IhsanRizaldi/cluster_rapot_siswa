@@ -30,7 +30,7 @@
                     <div class="row ">
                         <div class="col d-flex ml-auto">
                             <a href="{{ route('setnilai.edit',$nilai[0]->setkelas->kelas->id) }}" class="btn btn-success"><i class="fas fa-pen"></i></a>
-                            <a href="{{ route('setnilai.edit',$nilai[0]->setkelas->kelas->id) }}" class="btn btn-secondary"><i class="fas fa-pen"></i></a>
+                            <a href="{{ route('cluster.index',$nilai[0]->setkelas->kelas->id) }}" class="btn btn-secondary"><i class="fas fa-pen"></i></a>
                         </div>
                     </div>
                 </div>
@@ -51,10 +51,9 @@
                             <th>PJOK</th>
                             <th>PABP</th>
                             <th>PKN</th>
-                            <th>Cluster</th>
                         </tr>
+                        @foreach ($nilai as $data)
                         <tr>
-                            @foreach ($nilai as $data)
                             <td>{{ $data->setkelas->siswa->nama_lengkap }}</td>
                             <td>{{ $data->bahasa_indonesia }}</td>
                             <td>{{ $data->bahasa_inggris }}</td>
