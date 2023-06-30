@@ -25,7 +25,7 @@
             <div class="card">
                 <div class="card-header d-flex">
                     <h6 class="card-title text-primary">Set Kelas</h6>
-                    <a href="{{ route('setkelas.create') }}" class="btn btn-primary ml-auto">
+                    <a href="{{ route('setkelas.create') }}" class="btn btn-primary btn-sm ml-auto">
                         <i class="fas fa-plus-large">+</i>
                       </a>
                 </div>
@@ -39,6 +39,7 @@
                                 <th>{{ $i++ }}</th>
                                 <th>{{ $data->siswa->nama_lengkap }}</th>
                                 <th>{{ $data->kelas->kode_kelas }}</th>
+                                <th>{{ $data->walikelas->name }}</th>
                                 <th>
                                     <a href="{{ route('setkelas.delete',$data->id) }}" onclick="return confirm('Apakah Anda Yakin?')" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                 </th>

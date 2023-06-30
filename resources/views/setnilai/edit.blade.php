@@ -10,9 +10,8 @@
         display: block;
         }
 </style>
-    <h2 class="text-center">Set Nilai Siswa</h2>
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col">
             <div class="card">
                 <div class="card-header d-flex">
                     <h6 class="card-title text-primary">Set Nilai Siswa</h6>

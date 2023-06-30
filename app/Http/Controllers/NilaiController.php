@@ -13,8 +13,17 @@ class NilaiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $cari = $request->cari;
+        if(isset($cari)){
+            $kelas = Kelas::where('nama_kelas','like','%'.$cari.'%')
+            ->orWhere('kode_kelas','like','%'.$cari.'%')
+            ->latest()->paginate(5);
+            $user = User::get();
+            return view('setnilai.index',compact('kelas','user'));
+        }
+
         $kelas = Kelas::latest()->paginate(5);
         $user = User::get();
         return view('setnilai.index',compact('kelas','user'));

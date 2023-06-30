@@ -17,8 +17,6 @@
                     <h6 class="card-title text-primary">Itterasi 1</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
                     <table class="table table-responsive table-bordered mb-3 mt-3" cellspacing="0" style="overflow-x: auto">
 
                         <tr>
@@ -36,61 +34,59 @@
                             <th>C1</th>
                             <th>C2</th>
                             <th>C3</th>
-                            <th>Peringkat</th>
                         </tr>
                         @php
-                             $total = [];
+                             $ranking = [];
                         @endphp
                     @foreach ($nilai as $data)
                         @php
 
                             $centroid = 7;
-                            $c1 = sqrt(pow($data->bahasa_indonesia - $centroid,2) + 
-                            pow($data->bahasa_inggris - $centroid,2) + 
-                            pow($data->bahasa_jepang - $centroid,2) + 
-                            pow($data->ilmu_pengetahuan_alam - $centroid,2) + 
-                            pow($data->ilmu_pengetahuan_sosial - $centroid,2) + 
-                            pow($data->matematika - $centroid,2) + 
-                            pow($data->seni_budaya - $centroid,2) + 
-                            pow($data->pendidikan_jasmani_dan_rohani - $centroid,2) + 
-                            pow($data->pendidikan_agama_dan_budi_pekerti - $centroid,2) + 
+                            $c1 = sqrt(pow($data->bahasa_indonesia - $centroid,2) +
+                            pow($data->bahasa_inggris - $centroid,2) +
+                            pow($data->bahasa_jepang - $centroid,2) +
+                            pow($data->ilmu_pengetahuan_alam - $centroid,2) +
+                            pow($data->ilmu_pengetahuan_sosial - $centroid,2) +
+                            pow($data->matematika - $centroid,2) +
+                            pow($data->seni_budaya - $centroid,2) +
+                            pow($data->pendidikan_jasmani_dan_rohani - $centroid,2) +
+                            pow($data->pendidikan_agama_dan_budi_pekerti - $centroid,2) +
                             pow($data->pendidikan_kewarganegaraan - $centroid,2));
 
-                            $x1 = $c1/3; 
+                            $x1 = $c1/3;
 
                             $centroid2 = 6;
-                            $c2 = sqrt(pow($data->bahasa_indonesia - $centroid2,2) + 
-                            pow($data->bahasa_inggris - $centroid2,2) + 
-                            pow($data->bahasa_jepang - $centroid2,2) + 
-                            pow($data->ilmu_pengetahuan_alam - $centroid2,2) + 
-                            pow($data->ilmu_pengetahuan_sosial - $centroid2,2) + 
-                            pow($data->matematika - $centroid2,2) + 
-                            pow($data->seni_budaya - $centroid2,2) + 
-                            pow($data->pendidikan_jasmani_dan_rohani - $centroid2,2) + 
-                            pow($data->pendidikan_agama_dan_budi_pekerti - $centroid2,2) + 
+                            $c2 = sqrt(pow($data->bahasa_indonesia - $centroid2,2) +
+                            pow($data->bahasa_inggris - $centroid2,2) +
+                            pow($data->bahasa_jepang - $centroid2,2) +
+                            pow($data->ilmu_pengetahuan_alam - $centroid2,2) +
+                            pow($data->ilmu_pengetahuan_sosial - $centroid2,2) +
+                            pow($data->matematika - $centroid2,2) +
+                            pow($data->seni_budaya - $centroid2,2) +
+                            pow($data->pendidikan_jasmani_dan_rohani - $centroid2,2) +
+                            pow($data->pendidikan_agama_dan_budi_pekerti - $centroid2,2) +
                             pow($data->pendidikan_kewarganegaraan - $centroid2,2));
 
-                            $x2 = $c2/3; 
+                            $x2 = $c2/3;
 
                             $centroid3 = 5;
-                            $c3 = sqrt(pow($data->bahasa_indonesia - $centroid3,2) + 
-                            pow($data->bahasa_inggris - $centroid3,2) + 
-                            pow($data->bahasa_jepang - $centroid3,2) + 
-                            pow($data->ilmu_pengetahuan_alam - $centroid3,2) + 
-                            pow($data->ilmu_pengetahuan_sosial - $centroid3,2) + 
-                            pow($data->matematika - $centroid3,2) + 
-                            pow($data->seni_budaya - $centroid3,2) + 
-                            pow($data->pendidikan_jasmani_dan_rohani - $centroid3,2) + 
-                            pow($data->pendidikan_agama_dan_budi_pekerti - $centroid3,2) + 
+                            $c3 = sqrt(pow($data->bahasa_indonesia - $centroid3,2) +
+                            pow($data->bahasa_inggris - $centroid3,2) +
+                            pow($data->bahasa_jepang - $centroid3,2) +
+                            pow($data->ilmu_pengetahuan_alam - $centroid3,2) +
+                            pow($data->ilmu_pengetahuan_sosial - $centroid3,2) +
+                            pow($data->matematika - $centroid3,2) +
+                            pow($data->seni_budaya - $centroid3,2) +
+                            pow($data->pendidikan_jasmani_dan_rohani - $centroid3,2) +
+                            pow($data->pendidikan_agama_dan_budi_pekerti - $centroid3,2) +
                             pow($data->pendidikan_kewarganegaraan - $centroid3,2));
 
-                            $x3 = $c3/3; 
+                            $x3 = $c3/3;
 
-                           
+
                             $total = ($x1+$x2+$x3)/3;
 
-
-                            
+                            $ranking[$data->setkelas->siswa->nama_lengkap] = $total;
 
                         @endphp
                         <tr>
@@ -108,12 +104,25 @@
                             <td>{{ $x1 }}</td>
                             <td>{{ $x2 }}</td>
                             <td>{{ $x3 }}</td>
-                            <td>Peringkat {{ $total }}</td>
                         </tr>
                     @endforeach
+                        @php
+                            arsort($ranking);
+                            $rank = 1;
+                        @endphp
                     </table>
-                </div>
-            </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Nama</th>
+                            <th>Ranking</th>
+                        </tr>
+                        @foreach ($ranking as $key => $value)
+                            <tr>
+                                <th>{{ $key }}</th>
+                                <td>Peringkat {{ $rank++ }}</td>
+                            </tr>
+                        @endforeach
+                    </table>
             </div>
             </div>
         </div>

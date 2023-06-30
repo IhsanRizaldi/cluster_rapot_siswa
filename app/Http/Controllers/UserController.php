@@ -62,19 +62,19 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::all();
+        $user = User::find($id);
         return view('users.edit',compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, string $id)
     {
-        $siswa = Siswa::find($id);
-        $siswa->fill($request->validated());
-        $siswa->password = Hash::make($request->password);
-        $siswa->save();
+        $user = User::find($id);
+        $user->fill($request->validated());
+        $user->password = Hash::make($request->password);
+        $user->save();
         return redirect()->route('user.index')->with('success', 'User berhasil diubah!');
     }
 
@@ -83,8 +83,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        $siswa = Siswa::find($id);
-        $siswa->delete();
+        $user = User::find($id);
+        $user->delete();
         return redirect()->route('user.index')->with('success', 'User berhasil dihapus!');
     }
 }

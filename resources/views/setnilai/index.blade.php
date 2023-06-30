@@ -1,17 +1,5 @@
 @extends('master.index')
 @section('main')
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ $message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    @endif
-    @if ($message = Session::get('failed'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ $message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    @endif
     <div class="row">
         <div class="col-md-6 mb-3 mt-3">
             <form class="d-flex" role="search">
@@ -30,17 +18,22 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <table class="table mb-3 mt-3">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>No</th>
+                            <th>Kelas</th>
+                            <th>Action</th>
+                        </tr>
                         @php
                             $i = 1;
                         @endphp
                         @foreach ($kelas as $data)
                             <tr>
-                                <th>{{ $i++ }}</th>
-                                <th>{{ $data->kode_kelas }}</th>
-                                <th>
+                                <td>{{ $i++ }}</td>
+                                <td>{{ $data->kode_kelas }}</td>
+                                <td>
                                     <a href="{{ route('setnilai.show',$data->id) }}" class="btn btn-warning"><i class="fas fa-eye"></i></a>
-                                </th>
+                                </td>
                             </tr>
                         @endforeach
                     </table>

@@ -25,7 +25,7 @@
             <div class="card">
                 <div class="card-header d-flex">
                     <h6 class="card-title text-primary">Tingkat</h6>
-                    <a href="{{ route('tingkat.create') }}" class="btn btn-primary ml-auto">
+                    <a href="{{ route('tingkat.create') }}" class="btn btn-primary btn-sm ml-auto">
                         <i class="fas fa-plus-large">+</i>
                       </a>
                 </div>

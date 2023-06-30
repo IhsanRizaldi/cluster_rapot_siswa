@@ -15,6 +15,7 @@
                 <i class="fas fa-home" style="color: white"></i> <span class="ms-1 d-none d-sm-inline" style="color: white">Home</span>
             </a>
         </li>
+        @if (Auth::user()->role === 'admin')
         <li class="nav-item">
             <a href="{{ route('tahun_ajaran.index') }}" class="nav-link">
                 <i class="fas fa-calendar" style="color: white"></i> <span class="ms-1 d-none d-sm-inline" style="color: white">Tahun Ajaran</span>
@@ -36,11 +37,6 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('setnilai.index') }}" class="nav-link">
-                <i class="fas fa-graduation-cap" style="color: white"></i> <span class="ms-1 d-none d-sm-inline" style="color: white">Set Nilai</span>
-            </a>
-        </li>
-        <li class="nav-item">
             <a href="{{ route('siswa.index') }}" class="nav-link">
                 <i class="fas fa-users" style="color: white"></i> <span class="ms-1 d-none d-sm-inline" style="color: white">Siswa</span>
             </a>
@@ -50,6 +46,13 @@
                 <i class="fas fa-user" style="color: white"></i> <span class="ms-1 d-none d-sm-inline" style="color: white">User</span>
             </a>
         </li>
+        @endif
+        <li class="nav-item">
+            <a href="{{ route('setnilai.index') }}" class="nav-link">
+                <i class="fas fa-graduation-cap" style="color: white"></i> <span class="ms-1 d-none d-sm-inline" style="color: white">Set Nilai</span>
+            </a>
+        </li>
+
     </ul>
 </ul>
 <!-- End of Sidebar -->

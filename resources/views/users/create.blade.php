@@ -11,7 +11,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="" class="form-label">Nama User</label>
-                            <input type="text" name="name" class="form-control" placeholder="Tambahkan Nama user" value="{{ old('name') }}">
+                            <input type="text" name="name" class="form-control" placeholder="Tambahkan Nama User" value="{{ old('name') }}">
                             @error('name')
                                  <p class="text-danger">
                                     {{ $message }}
@@ -20,7 +20,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" placeholder="Tambahkan Nama user" value="{{ old('email') }}">
+                            <input type="email" name="email" class="form-control" placeholder="Tambahkan Email User" value="{{ old('email') }}">
                             @error('email')
                                  <p class="text-danger">
                                     {{ $message }}
@@ -29,7 +29,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Tambahkan Nama user" value="{{ old('password') }}">
+                            <input type="password" name="password" class="form-control" placeholder="Tambahkan Password User" value="{{ old('password') }}">
                             @error('password')
                                  <p class="text-danger">
                                     {{ $message }}

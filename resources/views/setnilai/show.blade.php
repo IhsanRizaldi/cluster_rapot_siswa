@@ -10,28 +10,17 @@
     display: block;
     }
 </style>
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ $message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    @endif
-    @if ($message = Session::get('failed'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ $message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    @endif
     <div class="row justify-content-center">
         <div class="col">
+            @if ($nilai[0]->setkelas->walikelas->id == Auth::user()->id)
             <div class="card">
                 <div class="card-header">
-                    <h6 class="card-title text-primary">Set Nilai</h6>
                     <div class="row ">
                         <div class="col d-flex ml-auto">
-                            <a href="{{ route('setnilai.edit',$nilai[0]->setkelas->kelas->id) }}" class="btn btn-success"><i class="fas fa-pen"></i></a>
-                            <a href="{{ route('cluster.index',$nilai[0]->setkelas->kelas->id) }}" class="btn btn-secondary"><i class="fas fa-pen"></i></a>
+                            <h6 class="card-title text-primary">Set Nilai</h6>
                         </div>
+                        <a href="{{ route('setnilai.edit',$nilai[0]->setkelas->kelas->id) }}" class="btn btn-success btn-sm"><i class="fas fa-pen"></i></a>
+                        <a href="{{ route('cluster.index',$nilai[0]->setkelas->kelas->id) }}" class="btn btn-secondary btn-sm"><i class="fas fa-print"></i></a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -70,8 +59,11 @@
                     </table>
                 </div>
             </div>
-            </div>
-            </div>
+        </div>
+    </div>
+    @else
+        <h1 class="text-center">Anda Bukan Walikelas Kelas Ini!</h1>
+    @endif
         </div>
     </div>
 @endsection
